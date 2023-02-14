@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MangCamBien</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./img/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="./fontawesome-free-6.2.1-web/css/fontawesome.css" rel="stylesheet">
+    <link href="/ path / to / bootstrap.min.css" rel="stylesheet">
+    <link href="dist / css / component-custom-switch.css" rel="stylesheet">
+
+ 
+</head> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+<script>
+  var socket = io('http://localhost:3000');
+</script>
+
+  <!-- HEARDER  -->
+  <header>
+    <div class="container-fluid position-relative" style="padding: 20px 0;  margin-bottom: 30px; background-color: #f2f2f2;">
+      <div class="row ">
+        <!-- <div id="icon_home" class="col-sm-1">
+          <img src="./img/home.png" alt="icon">
+        </div>
+        <div class="col-sm-9"><h2>Dashboard</h2></div> -->
+        <div class="col-sm"></div>
+        <nav class="col-sm-9 navbar navbar-light " style="">
+          <a class="navbar-brand" href="#">
+            <img src="./img/home.png" alt="">
+            Dashboard
+          </a>
+        </nav>
+
+        <ul class="col-sm-2 nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"  aria-controls="home" aria-selected="true">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="https://github.com/PandaMory45" role="tab" aria-controls="contact" aria-selected="false">GitHub</a>
+          </li>
+        </ul>
+           
+
+      </div>
+    </header>   
+<!-- MAIN  -->
+    <!-- DATASENSORS -->
+<div class="sensors">
+  <div class="container" >
+      <div class="row text-center" style="min-height:150px; justify-content: space-around; margin-bottom: 30px;">
+        <div class="col px-md-3" id="nhiet__do" style=" margin-right: 15px; border-radius: 5px; background: #ec8888" >
+          <i class="fa-solid fa-temperature-three-quarters"></i>
+          <h3>Temperature</h3>
+          <h2 id="temp">--℃</h2>
+          <p id="nhiet_do"></p>
+        </div>
+        <div class="col px-md-3" id="do_amm" style=" margin-right: 15px; border-radius: 5px; background: #809fff">
+          <i class="fa-solid fa-cloud"></i>
+          <h3>Humidity</h3>
+          <h2 id="hum">--%</h2>
+          <p id="do__am"></p>
+        </div>
+        <div class="col px-md-3" id="anh_Sang" style=" margin-right: 15px; border-radius: 5px; background: #e9e95f">
+          <i class="fa-solid fa-sun"></i>
+          <h3>Light</h3>
+          <h2 id="light">--Lux</h2>
+          <p id="anh__sang"></p>
+        </div>
+        
+      </div>
+    </div>
+  </div>    
+    <!-- CHART and BUTTON  -->
+    <div class="container" >
+      <div class="row text-center">
+        <!-- Chart  -->
+        <div class="col-sm-8" style="box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+                                                inset 0 4px 4px rgba(255,255,255,0.2),
+                                                inset 0 -4px 4px rgba(255,255,100,0.2);border-radius: 10px; max-height: 500px;">
+          <canvas id="ssChart"></canvas>
+        </div>
+        <!-- BUTTON  -->
+        <div class="col-sm-4" >
+          <div id="btn1">
+              <img src="./img/close.png" id="lamp_open" alt="lamp">
+              <div id="tog_btn1" >
+                <i class="hinh_tron"></i>
+              </div>
+          </div>  
+
+          <!-- <div class="btn_2" style=" background: rgb(192, 130, 173);border-radius: 10px; height: 46%;">
+              <img src="./img/close.png" id="lamp_open2" alt="lamp">
+              <div>
+                <button type="button" id="btn_on" class="btn btn-outline-success font-weight-bold " style="border:solid 3px #000;color: #000;" onclick="toggle_Img()">ON</button>
+                <button type="button" id="btn_off" class="btn btn-outline-danger font-weight-bold " style="border:solid 3px #000;color: #000" onclick="toggle_Img_2()">OFF</button>
+              </div>              
+          </div> -->
+          <div class="btn_2">
+            <img src="./img/close.png" id="lamp_open2" alt="lamp">
+            <button id="btn2" type="button" class="btn btn-success btn-lg" onclick="device2()">ON</button>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="col px-md-12">
+      <div class="footer-copyright text-center py-3">Contact to me:
+        <a href="https://www.facebook.com/profile.php?id=100008023231941"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100008023231941"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100008023231941"><i class="fa-brands fa-telegram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<script src="./main.js"></script>
+<script src="https://kit.fontawesome.com/209e16ec78.js" crossorigin="anonymous"></script>
+</html>
